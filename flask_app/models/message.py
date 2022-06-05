@@ -16,8 +16,15 @@ class Message:
         return results
 
     @classmethod
-    def random_message():
-        return
+    def random_message(cls):
+        query = "SELECT * FROM messages ORDER BY RAND() LIMIT 1"
+        results =  connectToMySQL("messages_db").query_db(query)
+        messages = []
+        if results:
+            for row in results:
+                temp_message = cls(row)
+                messages.append(temp_message)
+        return messages
 
     @staticmethod
     def message_validator(data):

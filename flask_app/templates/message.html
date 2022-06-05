@@ -1,0 +1,10 @@
+<h1>Your Message</h1>
+<p>This is a whole lot of nothing!</p>
+<p>- A Wise Man</p>
+
+<a href="/">Grab a new Message</a>
+
+{% for message in messages %}
+    <p>{{message['message']}}</p>
+    <p>{{message['creator']}}</p>
+{% endfor %}

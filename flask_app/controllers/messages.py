@@ -12,13 +12,23 @@ def index():
 def new_message():
     return render_template('createMessage.html')
 
+@app.route("/message")
+def my_message():
+    messages = Message.random_message()
+    return render_template('message.html', messages=messages)
+
 #------------------Action Routes----------------------
 @app.route("/messages/create", methods = ["POST"])
 def create_message():
-    if Message.message_validator(request.form):
+    data = request.form.to_dict()
+    if "creator2" in data:
+        data["creator"] = "Anonymous"
+    else:
+        data["creator"] = data["creator1"]
+    if Message.message_validator(data):
         query_data = {
-            "message": request.form["message"],
-            "creator": request.form["creator"]
+            "message": data["message"],
+            "creator": data["creator"]
         }
         message_id = Message.create_message(query_data)
         return redirect("/")

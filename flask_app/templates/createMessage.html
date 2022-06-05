@@ -1,25 +1,49 @@
-<h1>New Message</h1>
 
-{% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
-    {% if messages %}                            <!-- check if there are any messages -->
-        {% for message in messages %}            <!-- loop through the messages -->
-            <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
-        {% endfor %}
-    {% endif %}
-{% endwith %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message For You</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+</head>
+<body>
 
-<div>
-    <form action="/messages/create" method="post">
-        <div>
-            <label for="message">Enter Message</label>
-            <textarea name="message" id="message" cols="30" rows="10"></textarea>
-        </div>
-        <div>
-            <label for="creator">From</label>
-            <!-- <small class="form-text text-muted"></small> -->
-            <input type="text" name="creator1">
-            <input type="checkbox" id="Anonymous" name="creator2" value="Anonymous">Anonymous</input>
-        </div>
-        <input type="submit" value="Create">
-    </form>
-</div>
+
+<section>
+    <div class="center">
+        <form action="/messages/create" method="post" class="form">
+            <h1>New Message</h1>
+            {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                {% if messages %}                            <!-- check if there are any messages -->
+                    {% for message in messages %}            <!-- loop through the messages -->
+                        <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="mb-3">
+                <label for="message" class="form-label">Enter Message</label>
+                <textarea name="message" class="form-control" id="message" cols="30" rows="3"></textarea>
+            </div>
+            <div>
+                <label for="creator">From:</label>
+                <!-- <small class="form-text text-muted"></small> -->
+                <input type="text" name="creator1" class="form-control">
+                <input type="checkbox" id="Anonymous" name="creator2" value="Anonymous">Anonymous</input>
+            </div>
+            <a href="/" class="btn btn-outline-secondary btn-sm button">Cancel</a>
+            <input type="submit" value="Create" class="btn btn-outline-secondary btn-sm button">
+        </form>
+    </div>
+    <div class="wave water"></div>
+    <div class="wave water"></div>
+    <div class="wave water"></div>
+    <div class="wave water"></div>
+</section>
+</body>
+</html>

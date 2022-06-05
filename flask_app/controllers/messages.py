@@ -21,7 +21,7 @@ def my_message():
 @app.route("/messages/create", methods = ["POST"])
 def create_message():
     data = request.form.to_dict()
-    if "creator2" in data:
+    if "creator2" in data: # checking for any data, if not moving to the else statement 
         data["creator"] = "Anonymous"
     else:
         data["creator"] = data["creator1"]
